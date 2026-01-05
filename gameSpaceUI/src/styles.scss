@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+}
+
+:root {
+  // display: block;
+  --primary-color: #2c7be5;
+  --accent-color: #22c55e;
+  --danger-color: #ef4444;
+  --border-radius: 1rem;
+  // --bg-color: #eeeeee;
+  --main-bg: #eeeeee;
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --text-color: #111827;
+  --result-bg: #ffffff;
+  --box-shadow: rgba(0, 0, 0, 0.4);
+  --white: #fff;
+  --black: #000;
+  --rps-box-shadow1: rgba(0, 0, 0, 0.16);
+  --rps-box-shadow2: rgba(0, 0, 0, 0.23);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #18181b;
+    --card-bg: #222;
+    --text-color: #f9fafb;
+    // --result-bg: #4242429d;
+    --result-bg: #adadad25;
+    --box-shadow: rgba(255, 255, 255, 0.4);
+    --white: #000;
+    --black: #fff;
+    --main-bg: var(--bg-color);
+    --rps-box-shadow1: rgba(255, 255, 255, 0.16);
+    --rps-box-shadow2: rgba(255, 255, 255, 0.23);
+  }
+}

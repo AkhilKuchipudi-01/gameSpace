@@ -1,144 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
+
+// Variables
+$bg-color: #0f172a;
+$glass-bg: rgba(255, 255, 255, 0.05);
+$glass-border: rgba(255, 255, 255, 0.1);
+$text-color: #ffffff;
+
+// Neon Colors
+$rock-color: #f43f5e; // Pink/Red
+$paper-color: #3b82f6; // Blue
+$scissor-color: #eab308; // Yellow
+$win-color: #10b981; // Green
+
+:host {
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  height: 100vh;
+  background-color: $bg-color;
+  color: $text-color;
+  overflow-x: hidden;
+}
+
 .gameContainer {
+  position: relative;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  // align-items: flex-start;
-  padding: 2rem;
-  /* Added padding so it doesn't touch edges */
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-  min-height: 100vh;
-  max-height: 100%;
+  overflow: hidden;
+  // padding: 2rem;
+  height: 100vh;
   box-sizing: border-box;
 }
 
-.rockPaperScissor {
-  background-color: var(--main-bg);
-  /* Applied specific background */
-  border-radius: var(--border-radius);
+/* --- Background Blobs --- */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: #6366f1; // Indigo
+  top: -10%;
+  left: -10%;
+  animation: float 10s infinite alternate;
+}
+
+.blob-2 {
+  width: 350px;
+  height: 350px;
+  background: #ec4899; // Pink
+  bottom: -10%;
+  right: -10%;
+  animation: float 8s infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(30px, 50px);
+  }
+}
+
+/* --- Glass Cards --- */
+.glass-card {
+  position: relative;
+  z-index: 10;
+  background: $glass-bg;
+  backdrop-filter: blur(16px);
+  border: 1px solid $glass-border;
+  border-radius: 24px;
   padding: 2rem;
-  // width: 100%;
-  max-width: 480px;
-  border: 0.5px solid #374151;
-  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
-  // box-shadow: 0 8px 16px var(--box-shadow);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+.game-area {
+  max-width: 500px;
+  width: 100%;
 }
 
+.game-title {
+  text-align: center;
+  font-weight: 900;
+  font-size: 2.5rem;
+  margin: 0 0 2rem 0;
+  background: linear-gradient(to right, #f472b6, #60a5fa);
+
+  // Fix: Standard background-clip compatibility
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  // Ensure text is transparent so gradient shows through
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* --- Buttons --- */
 .rockPaperScissorButtonsContainer {
   display: flex;
   gap: 1.5rem;
+  justify-content: center;
 }
 
 .rockPaperScissorButton {
-  background: transparent;
-  border-radius: 1rem;
-  padding: 0.8rem;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s;
-  border: 0.5px solid #374151;
-  box-shadow: var(--rps-box-shadow1) 0px 3px 6px, var(--rps-box-shadow2) 0px 3px 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  .rps {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .rps {
+      transform: scale(1.1);
+    }
+  }
 }
 
-.rockPaperScissorButton:hover {
-  background-color: rgba(44, 123, 229, 0.2);
-  transform: scale(1.05);
+// Button Specific Glows
+.btn-rock:hover {
+  border-color: $rock-color;
+  box-shadow: 0 0 20px rgba($rock-color, 0.4);
 }
 
-.rps {
-  width: 70px;
-  height: 70px;
+.btn-paper:hover {
+  border-color: $paper-color;
+  box-shadow: 0 0 20px rgba($paper-color, 0.4);
 }
 
-/* Results */
+.btn-scissor:hover {
+  border-color: $scissor-color;
+  box-shadow: 0 0 20px rgba($scissor-color, 0.4);
+}
+
+/* --- Result Area --- */
 .resultDiv {
   text-align: center;
-  background-color: var(--result-bg);
+  background-color: rgba(255, 255, 255, 0.05); // Default neutral
   padding: 1rem;
-  border-radius: var(--border-radius);
-  width: 100%;
   box-sizing: border-box;
-  transition: background-color 0.4s ease;
+  border-radius: 1rem;
+  // width: 100%;
+  margin-top: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0.7;
+  transform: scale(0.95);
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .resultDivP {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* --- Player vs Computer --- */
 .rockPaperScissorResultDiv {
   display: flex;
   justify-content: space-between;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  align-items: center;
+  margin-top: 2rem;
   width: 100%;
 }
 
-.divYou,
-.divComputer {
+.player-box {
   text-align: center;
-  width: 48%;
-  background-color: var(--result-bg);
-  // padding: 1rem;
-  border-radius: var(--border-radius);
-  transition: background-color 0.4s ease;
-  border: 0.5px solid #374151;
-  box-sizing: border-box;
+  width: 40%;
+}
+
+.player-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.img-wrapper {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .imgYou,
 .imgComputer {
   width: 60px;
   height: 60px;
-  margin-bottom: 1rem;
 }
 
+.vs-badge {
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+}
+
+/* --- Scoreboard --- */
 .scoreCard {
-  background-color: var(--card-bg);
-  padding: 1rem;
-  min-width: 200px;
-  border-radius: var(--border-radius);
-  text-align: center;
-  border: 1px solid #374151;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  /* Adjusted specific positioning to be more responsive */
-  margin-top: 2rem;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.scoreCard hr {
-  border: 1px solid #374151;
-  margin-bottom: 1rem;
+.scoreCardText {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &.win .value {
+    color: $win-color;
+  }
+
+  &.loss .value {
+    color: $rock-color;
+  }
+
+  &.tie .value {
+    color: $scissor-color;
+  }
 }
 
 .resetScore {
-  background-color: var(--danger-color);
-  border: none;
-  color: white;
-  font-size: 1rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--border-radius);
+  background: rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(244, 63, 94, 0.5);
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s ease;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  &:hover {
+    background: $rock-color;
+    box-shadow: 0 0 15px rgba($rock-color, 0.5);
+  }
 }
 
-.resetScore:hover {
-  background-color: #dc2626aa;
-  transform: scale(1.05);
-}
-
-/* Animations */
+/* --- Animations --- */
 @keyframes lossShake {
 
   0%,
@@ -158,41 +323,36 @@
 }
 
 .lossEffect {
-  animation: lossShake 0.7s ease;
-  /* background-color change handled by binding, 
-     but shaking stays here */
+  animation: lossShake 0.5s ease;
+  border-color: $rock-color;
+  box-shadow: 0 0 30px rgba($rock-color, 0.2);
 }
 
 @keyframes tiePulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.6);
+    box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 3rem 3rem rgba(251, 191, 36, 0);
+    box-shadow: 0 0 0 20px rgba(234, 179, 8, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+    box-shadow: 0 0 0 0 rgba(234, 179, 8, 0);
   }
 }
 
 .tieEffect {
-  animation: tiePulse 0.7s ease;
+  animation: tiePulse 0.6s ease;
 }
 
-// @media (max-width: 600px) {
-//   .gameContainer {
-//     flex-direction: column;
-//     align-items: center;
-//   }
+@media (max-width: 768px) {
+  .gameContainer {
+    flex-direction: column;
+  }
 
-//   .scoreCard {
-//     width: 90%;
-//   }
-
-//   .rps {
-//     width: 60px;
-//     height: 60px;
-//   }
-// }
+  .scoreCard {
+    width: 100%;
+    max-width: 500px;
+  }
+}

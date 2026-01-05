@@ -5,13 +5,36 @@
     <div class="score-display">{{ score }}</div>
   </div>
 
-  <div *ngIf="showOverlay" class="game-overlay">
-    <h1 class="game-title">{{ titleText }}</h1>
+  <div class="game-controls-bottom-left">
+    <div class="key-hint">
+      <span class="key">Space</span> <span>Fly</span>
+    </div>
+    <div class="key-hint">
+      <span class="key">Ctrl + Space</span> <span>Pause</span>
+    </div>
+    <div class="key-hint">
+      <span class="key">Esc</span> <span>Exit</span>
+    </div>
+  </div>
 
-    <h2 *ngIf="isGameOver" class="final-score">{{ scoreText }}</h2>
+  <div *ngIf="showOverlay || isPaused" class="game-overlay" [class.paused]="isPaused">
+    <div class="glass-panel">
+      <h1 class="game-title">{{ isPaused ? 'Game Paused' : titleText }}</h1>
+      <h2 *ngIf="isGameOver" class="final-score">{{ scoreText }}</h2>
 
-    <button class="btn" (click)="startGame()">
-      {{ isGameOver ? 'Try Again' : 'Start Flying' }}
-    </button>
+      <div class="button-group">
+        <button class="btn btn-primary" (click)="isPaused ? togglePause() : startGame()">
+          {{ isPaused ? 'Resume' : (isGameOver ? 'Try Again' : 'Start Flying') }}
+        </button>
+        
+        <button class="btn btn-secondary" (click)="goBack()">
+          Exit Game
+        </button>
+      </div>
+
+      <p class="controls-hint" *ngIf="!isPaused && !isGameOver">
+        Press Space to Flap
+      </p>
+    </div>
   </div>
 </div>
