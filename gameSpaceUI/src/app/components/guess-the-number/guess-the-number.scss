@@ -8,6 +8,7 @@ $white: #ffffff;
 $glass: rgba(255, 255, 255, 0.05);
 $success: #10b981;
 $error: #f43f5e;
+$warning: #f59e0b;
 
 :host {
   font-family: 'Poppins', sans-serif;
@@ -18,7 +19,7 @@ $error: #f43f5e;
   color: $white;
 }
 
-// 1. Background Blobs (Ambient Animation)
+// 1. Background Blobs
 .game-container {
   position: relative;
   height: 100%;
@@ -55,13 +56,8 @@ $error: #f43f5e;
 }
 
 @keyframes float {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  100% {
-    transform: translate(30px, 50px);
-  }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 50px); }
 }
 
 // 2. Glassmorphism Card
@@ -75,48 +71,80 @@ $error: #f43f5e;
   border-radius: 24px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
+  transform-style: preserve-3d;
 
   h1 {
     font-weight: 700;
     margin-bottom: 2rem;
     letter-spacing: 1px;
     background: linear-gradient(to right, #c084fc, #6366f1);
+    
+    // Fix: Standard background-clip compatibility
     -webkit-background-clip: text;
+    background-clip: text; 
+    
     -webkit-text-fill-color: transparent;
+    color: transparent; // Ensure text is transparent for standard property
   }
 }
 
-// 3. Typography & Feedback
+// 3. Feedback & Attempts
 .display-area {
-  min-height: 80px;
-  margin-bottom: 1rem;
+  min-height: 100px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .status-text {
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  min-height: 1.5em;
 
-  &.success {
-    color: $success;
-    text-shadow: 0 0 10px rgba($success, 0.5);
-  }
-
-  &.error {
-    color: $error;
-    text-shadow: 0 0 10px rgba($error, 0.5);
-  }
-
-  &.neutral {
-    color: rgba(255, 255, 255, 0.7);
-  }
+  &.success { color: $success; text-shadow: 0 0 15px rgba($success, 0.4); }
+  &.error { color: $error; text-shadow: 0 0 15px rgba($error, 0.4); }
+  &.warning { color: $warning; }
+  &.neutral { color: rgba(255, 255, 255, 0.8); }
 }
 
-.attempts {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
-  margin-top: 0.5rem;
+// Visual Dots for Attempts
+.attempts-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  
+  .label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+
+    &.active {
+      background: $accent;
+      box-shadow: 0 0 8px $accent;
+      transform: scale(1.2);
+    }
+  }
 }
 
 // 4. Fluid Input
@@ -136,6 +164,17 @@ $error: #f43f5e;
   transition: all 0.3s ease;
   outline: none;
 
+  // Fix: Standard appearance compatibility
+  appearance: none;
+  -moz-appearance: textfield; // Specific fix for Firefox number inputs
+
+  // Remove number spinners for Webkit
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   &:focus {
     border-color: $accent;
     box-shadow: 0 0 15px rgba($accent, 0.3);
@@ -143,11 +182,11 @@ $error: #f43f5e;
   }
 }
 
-// 5. FLUID BUTTONS (The complex part)
+// 5. FLUID BUTTONS
 .fluid-btn {
   position: relative;
   padding: 15px 40px;
-  border-radius: 50px; // Pill shape
+  border-radius: 50px;
   border: none;
   font-size: 1rem;
   font-weight: 600;
@@ -159,27 +198,24 @@ $error: #f43f5e;
   width: 100%;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-top: 10px;
 
   span {
     position: relative;
-    z-index: 2; // Keep text above liquid
+    z-index: 2;
   }
 
-  // The container for the liquid
   .liquid {
     position: absolute;
     top: -80px;
     left: 0;
     width: 100%;
     height: 200px;
-    background: linear-gradient(45deg, $primary, $accent);
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
     z-index: 1;
 
-    // The Wave Effect
-    &::after,
-    &::before {
+    &::after, &::before {
       content: '';
       width: 200%;
       height: 200%;
@@ -191,13 +227,13 @@ $error: #f43f5e;
 
     &::before {
       border-radius: 45%;
-      background: rgba(20, 20, 20, 0.3); // Darker wave
+      background: rgba(20, 20, 20, 0.3);
       animation: wave 5s linear infinite;
     }
 
     &::after {
       border-radius: 40%;
-      background: rgba(255, 255, 255, 0.1); // Lighter wave
+      background: rgba(255, 255, 255, 0.1);
       animation: wave 10s linear infinite;
     }
   }
@@ -205,27 +241,26 @@ $error: #f43f5e;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-
-    .liquid {
-      top: -120px; // Moves the liquid up/down
-    }
+    .liquid { top: -120px; }
   }
-
-  &:active {
-    transform: scale(0.95); // Jelly click effect
-  }
+  
+  &:active { transform: scale(0.95); }
 }
 
-.reset-btn .liquid {
+// Specific Button Colors
+.primary-btn .liquid {
+  background: linear-gradient(45deg, $primary, $accent);
+}
+
+.win-btn .liquid {
   background: linear-gradient(45deg, $success, #34d399);
 }
 
-@keyframes wave {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
+.lose-btn .liquid {
+  background: linear-gradient(45deg, $error, #ef4444);
+}
 
-  100% {
-    transform: translate(-50%, -75%) rotate(360deg);
-  }
+@keyframes wave {
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(360deg); }
 }

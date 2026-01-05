@@ -3,6 +3,64 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
+  <div class="glass-card" @cardFlip [@shake]="shakeState">
+    
+    <h1>Fluid Guess</h1>
+
+    <div class="display-area">
+      <p class="status-text" [@popIn]="message" [ngClass]="statusClass">
+        {{ message }}
+      </p>
+
+      <div class="attempts-container" *ngIf="gameState === 'playing'">
+        <span class="label">Attempts Left:</span>
+        <div class="dots">
+          <span *ngFor="let i of [].constructor(5); let idx = index" 
+                class="dot" 
+                [class.active]="idx < attemptsLeft">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group" *ngIf="gameState === 'playing'">
+      <input 
+        #guessInput
+        type="number" 
+        [(ngModel)]="userGuess" 
+        (keyup.enter)="checkGuess()" 
+        placeholder="1-100"
+        class="fluid-input"
+        min="1" max="100" 
+      />
+    </div>
+
+    <div class="actions">
+      
+      <button *ngIf="gameState === 'playing'" (click)="checkGuess()" class="fluid-btn primary-btn">
+        <span>Guess</span>
+        <div class="liquid"></div>
+      </button>
+
+      <button *ngIf="gameState === 'won'" (click)="resetGame()" class="fluid-btn win-btn">
+        <span>You Won! Play Again</span>
+        <div class="liquid"></div>
+      </button>
+
+      <button *ngIf="gameState === 'lost'" (click)="resetGame()" class="fluid-btn lose-btn">
+        <span>You Lost. Retry?</span>
+        <div class="liquid"></div>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="game-container">
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
   <div class="glass-card" @cardFlip>
     <h1>Fluid Guess</h1>
 
@@ -32,4 +90,4 @@
       </button>
     </div>
   </div>
-</div>
+</div> -->
