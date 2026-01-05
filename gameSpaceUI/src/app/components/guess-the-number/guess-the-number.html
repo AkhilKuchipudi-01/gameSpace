@@ -1,0 +1,35 @@
+<div class="game-container">
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="glass-card" @cardFlip>
+    <h1>Fluid Guess</h1>
+
+    <div class="display-area">
+      <p class="status-text" [@popIn]="message" [ngClass]="statusClass">
+        {{ message }}
+      </p>
+      <div class="attempts" *ngIf="attempts > 0">
+        Attempts: {{ attempts }}
+      </div>
+    </div>
+
+    <div class="input-group" *ngIf="!gameOver">
+      <input type="number" [(ngModel)]="userGuess" (keyup.enter)="checkGuess()" placeholder="Enter 1-100"
+        class="fluid-input" />
+    </div>
+
+    <div class="actions">
+      <button *ngIf="!gameOver" (click)="checkGuess()" class="fluid-btn primary-btn">
+        <span>Guess</span>
+        <div class="liquid"></div>
+      </button>
+
+      <button *ngIf="gameOver" (click)="resetGame()" class="fluid-btn reset-btn">
+        <span>Play Again</span>
+        <div class="liquid"></div>
+      </button>
+    </div>
+  </div>
+</div>
