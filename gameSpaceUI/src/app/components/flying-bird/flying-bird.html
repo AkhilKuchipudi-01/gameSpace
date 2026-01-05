@@ -1,0 +1,17 @@
+<div class="game-container">
+  <canvas #gameCanvas (click)="onCanvasClick($event)"></canvas>
+
+  <div class="top-right-controls">
+    <div class="score-display">{{ score }}</div>
+  </div>
+
+  <div *ngIf="showOverlay" class="game-overlay">
+    <h1 class="game-title">{{ titleText }}</h1>
+
+    <h2 *ngIf="isGameOver" class="final-score">{{ scoreText }}</h2>
+
+    <button class="btn" (click)="startGame()">
+      {{ isGameOver ? 'Try Again' : 'Start Flying' }}
+    </button>
+  </div>
+</div>

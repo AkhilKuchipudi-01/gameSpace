@@ -1,0 +1,100 @@
+:host {
+  --primary-color: #6c5ce7;
+  --primary-hover: #5649c0;
+  --text-color: #2d3436;
+  --result-bg: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --primary-color: #a29bfe;
+    --text-color: #dfe6e9;
+    --result-bg: rgba(15, 23, 42, 0.9);
+  }
+}
+
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .game-container {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  }
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.top-right-controls {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  pointer-events: none;
+}
+
+.score-display {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--result-bg);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+}
+
+.game-title {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 800;
+  color: var(--primary-color);
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.final-score {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  color: var(--text-color);
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+}
+
+.btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-3px);
+}

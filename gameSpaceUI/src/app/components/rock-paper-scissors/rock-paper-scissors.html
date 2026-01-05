@@ -1,0 +1,43 @@
+<div class="gameContainer">
+  <div class="rockPaperScissor" [ngClass]="animationClass">
+    <div class="mainContainer">
+      <div class="rockPaperScissorButtonsContainer">
+        <button class="rockPaperScissorButton" (click)="play('rock')" aria-label="Rock">
+          <img class="rps" src="../../../assets/rock-emoji.png" alt="Rock" />
+        </button>
+        <button class="rockPaperScissorButton" (click)="play('paper')" aria-label="Paper">
+          <img class="rps" src="../../../assets/paper-emoji.png" alt="Paper" />
+        </button>
+        <button class="rockPaperScissorButton" (click)="play('scissor')" aria-label="Scissors">
+          <img class="rps" src="../../../assets/scissor-emoji.png" alt="Scissors" />
+        </button>
+      </div>
+
+      <div class="resultDiv" [style.background-color]="resultBackgroundColor">
+        <p class="resultDivP">{{ resultMessage }}</p>
+      </div>
+
+      <div class="rockPaperScissorResultDiv">
+        <div class="divYou">
+          <p><strong>You picked</strong></p>
+          <img class="imgYou" [src]="userImage" alt="Your choice" />
+        </div>
+        <div class="divComputer">
+          <p><strong>Computer picked</strong></p>
+          <img class="imgComputer" [src]="computerImage" alt="Computer choice" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scoreCard">
+    <p class="scoreCardText"><strong>Score Card</strong></p>
+    <hr>
+    <p class="rpp"><strong>Wins:</strong><span class="rpsWins"> {{ score.wins }}</span></p>
+    <p class="rpp"><strong>Losses:</strong><span class="rpsLosses"> {{ score.losses }}</span></p>
+    <p class="rpp"><strong>Ties:</strong><span class="rpsTies"> {{ score.ties }}</span></p>
+    <div class="resetScoreButton">
+      <button class="resetScore" (click)="resetScore()">Reset Score</button>
+    </div>
+  </div>
+</div>

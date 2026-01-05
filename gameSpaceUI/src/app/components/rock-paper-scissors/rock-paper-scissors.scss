@@ -1,0 +1,198 @@
+.gameContainer {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  // align-items: flex-start;
+  padding: 2rem;
+  /* Added padding so it doesn't touch edges */
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.rockPaperScissor {
+  background-color: var(--main-bg);
+  /* Applied specific background */
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  // width: 100%;
+  max-width: 480px;
+  border: 0.5px solid #374151;
+  box-shadow: rgba(255, 255, 255, 0.24) 0px 3px 8px;
+  // box-shadow: 0 8px 16px var(--box-shadow);
+  transition: transform 0.3s ease;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.rockPaperScissorButtonsContainer {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.rockPaperScissorButton {
+  background: transparent;
+  border-radius: 1rem;
+  padding: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
+  border: 0.5px solid #374151;
+  box-shadow: var(--rps-box-shadow1) 0px 3px 6px, var(--rps-box-shadow2) 0px 3px 6px;
+}
+
+.rockPaperScissorButton:hover {
+  background-color: rgba(44, 123, 229, 0.2);
+  transform: scale(1.05);
+}
+
+.rps {
+  width: 70px;
+  height: 70px;
+}
+
+/* Results */
+.resultDiv {
+  text-align: center;
+  background-color: var(--result-bg);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.4s ease;
+}
+
+.resultDivP {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.rockPaperScissorResultDiv {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.divYou,
+.divComputer {
+  text-align: center;
+  width: 48%;
+  background-color: var(--result-bg);
+  // padding: 1rem;
+  border-radius: var(--border-radius);
+  transition: background-color 0.4s ease;
+  border: 0.5px solid #374151;
+  box-sizing: border-box;
+}
+
+.imgYou,
+.imgComputer {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.scoreCard {
+  background-color: var(--card-bg);
+  padding: 1rem;
+  min-width: 200px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border: 1px solid #374151;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  /* Adjusted specific positioning to be more responsive */
+  margin-top: 2rem;
+}
+
+.scoreCard hr {
+  border: 1px solid #374151;
+  margin-bottom: 1rem;
+}
+
+.resetScore {
+  background-color: var(--danger-color);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.resetScore:hover {
+  background-color: #dc2626aa;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes lossShake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-10px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.lossEffect {
+  animation: lossShake 0.7s ease;
+  /* background-color change handled by binding, 
+     but shaking stays here */
+}
+
+@keyframes tiePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 3rem 3rem rgba(251, 191, 36, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+  }
+}
+
+.tieEffect {
+  animation: tiePulse 0.7s ease;
+}
+
+// @media (max-width: 600px) {
+//   .gameContainer {
+//     flex-direction: column;
+//     align-items: center;
+//   }
+
+//   .scoreCard {
+//     width: 90%;
+//   }
+
+//   .rps {
+//     width: 60px;
+//     height: 60px;
+//   }
+// }
