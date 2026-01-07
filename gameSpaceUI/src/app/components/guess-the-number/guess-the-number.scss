@@ -1,22 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
-// Variables
-$bg-color: #0f172a;
-$primary: #6366f1;
-$accent: #a855f7;
-$white: #ffffff;
-$glass: rgba(255, 255, 255, 0.05);
-$success: #10b981;
-$error: #f43f5e;
-$warning: #f59e0b;
-
 :host {
   font-family: 'Poppins', sans-serif;
   display: block;
   height: 100vh;
   overflow: hidden;
-  background-color: $bg-color;
-  color: $white;
+  background-color: var(--guess-bg);
+  color: var(--guess-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // 1. Background Blobs
@@ -40,7 +31,7 @@ $warning: #f59e0b;
 .blob-1 {
   width: 400px;
   height: 400px;
-  background: $primary;
+  background: var(--guess-primary);
   top: -100px;
   left: -100px;
   animation: float 10s infinite alternate;
@@ -49,44 +40,50 @@ $warning: #f59e0b;
 .blob-2 {
   width: 300px;
   height: 300px;
-  background: $accent;
+  background: var(--guess-accent);
   bottom: -50px;
   right: -50px;
   animation: float 8s infinite alternate-reverse;
 }
 
 @keyframes float {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(30px, 50px); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(30px, 50px);
+  }
 }
 
 // 2. Glassmorphism Card
 .glass-card {
   position: relative;
   z-index: 10;
-  background: $glass;
+  background: var(--guess-glass);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--guess-glass-border);
   padding: 3rem;
   border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: var(--guess-shadow);
   width: 90%;
   max-width: 420px;
   text-align: center;
   transform-style: preserve-3d;
+  transition: background 0.3s ease, border 0.3s ease;
 
   h1 {
     font-weight: 700;
     margin-bottom: 2rem;
     letter-spacing: 1px;
-    background: linear-gradient(to right, #c084fc, #6366f1);
-    
-    // Fix: Standard background-clip compatibility
+    background: var(--guess-gradient-text);
+
+    // Standard background-clip compatibility
     -webkit-background-clip: text;
-    background-clip: text; 
-    
+    background-clip: text;
+
     -webkit-text-fill-color: transparent;
-    color: transparent; // Ensure text is transparent for standard property
+    color: transparent;
   }
 }
 
@@ -106,10 +103,23 @@ $warning: #f59e0b;
   margin-bottom: 0.5rem;
   min-height: 1.5em;
 
-  &.success { color: $success; text-shadow: 0 0 15px rgba($success, 0.4); }
-  &.error { color: $error; text-shadow: 0 0 15px rgba($error, 0.4); }
-  &.warning { color: $warning; }
-  &.neutral { color: rgba(255, 255, 255, 0.8); }
+  &.success {
+    color: var(--guess-success);
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
+
+  &.error {
+    color: var(--guess-error);
+    text-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+  }
+
+  &.warning {
+    color: var(--guess-warning);
+  }
+
+  &.neutral {
+    opacity: 0.8;
+  }
 }
 
 // Visual Dots for Attempts
@@ -118,12 +128,12 @@ $warning: #f59e0b;
   align-items: center;
   gap: 10px;
   margin-top: 5px;
-  
+
   .label {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.5);
+    opacity: 0.5;
   }
 
   .dots {
@@ -135,13 +145,13 @@ $warning: #f59e0b;
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--guess-dot-inactive);
     transition: all 0.3s ease;
-    box-shadow: inset 0 0 2px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
 
     &.active {
-      background: $accent;
-      box-shadow: 0 0 8px $accent;
+      background: var(--guess-accent);
+      box-shadow: 0 0 8px var(--guess-accent);
       transform: scale(1.2);
     }
   }
@@ -156,17 +166,17 @@ $warning: #f59e0b;
   width: 100%;
   padding: 15px;
   border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
+  border: 2px solid var(--guess-input-border);
+  background: var(--guess-input-bg);
+  color: var(--guess-text);
   font-size: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
   outline: none;
 
-  // Fix: Standard appearance compatibility
+  // Standard appearance compatibility
   appearance: none;
-  -moz-appearance: textfield; // Specific fix for Firefox number inputs
+  -moz-appearance: textfield;
 
   // Remove number spinners for Webkit
   &::-webkit-outer-spin-button,
@@ -176,8 +186,8 @@ $warning: #f59e0b;
   }
 
   &:focus {
-    border-color: $accent;
-    box-shadow: 0 0 15px rgba($accent, 0.3);
+    border-color: var(--guess-accent);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
     transform: scale(1.02);
   }
 }
@@ -191,6 +201,7 @@ $warning: #f59e0b;
   font-size: 1rem;
   font-weight: 600;
   color: white;
+  /* Always white on liquid buttons */
   background: transparent;
   overflow: hidden;
   cursor: pointer;
@@ -203,6 +214,7 @@ $warning: #f59e0b;
   span {
     position: relative;
     z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .liquid {
@@ -215,7 +227,8 @@ $warning: #f59e0b;
     transition: 0.5s;
     z-index: 1;
 
-    &::after, &::before {
+    &::after,
+    &::before {
       content: '';
       width: 200%;
       height: 200%;
@@ -241,26 +254,49 @@ $warning: #f59e0b;
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    .liquid { top: -120px; }
+
+    .liquid {
+      top: -120px;
+    }
   }
-  
-  &:active { transform: scale(0.95); }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 // Specific Button Colors
 .primary-btn .liquid {
-  background: linear-gradient(45deg, $primary, $accent);
+  background: linear-gradient(45deg, var(--guess-primary), var(--guess-accent));
 }
 
 .win-btn .liquid {
-  background: linear-gradient(45deg, $success, #34d399);
+  background: linear-gradient(45deg, var(--guess-success), #34d399);
 }
 
 .lose-btn .liquid {
-  background: linear-gradient(45deg, $error, #ef4444);
+  background: linear-gradient(45deg, var(--guess-error), #ef4444);
+}
+
+.warning {
+  color: var(--guess-warning);
+  font-weight: bold;
+}
+
+.error {
+  color: var(--guess-error);
+}
+
+.success {
+  color: var(--guess-success);
 }
 
 @keyframes wave {
-  0% { transform: translate(-50%, -75%) rotate(0deg); }
-  100% { transform: translate(-50%, -75%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
 }
