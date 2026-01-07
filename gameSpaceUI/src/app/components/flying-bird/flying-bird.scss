@@ -1,34 +1,10 @@
-:host {
-  --primary-color: #00f2fe;
-  --primary-glow: rgba(0, 242, 254, 0.4);
-  --secondary-color: #4facfe;
-  --text-color: #ffffff;
-  --panel-bg: rgba(255, 255, 255, 0.1);
-  --panel-border: rgba(255, 255, 255, 0.2);
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --primary-color: #e056fd;
-    --primary-glow: rgba(224, 86, 253, 0.4);
-    --secondary-color: #686de0;
-    --panel-bg: rgba(15, 23, 42, 0.6);
-  }
-}
-
 .game-container {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: var(--game-bg-gradient);
   user-select: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  .game-container {
-    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-  }
 }
 
 canvas {
@@ -37,7 +13,6 @@ canvas {
   display: block;
 }
 
-/* --- HUD Controls --- */
 .top-right-controls {
   position: absolute;
   top: 40px;
@@ -50,7 +25,7 @@ canvas {
   font-family: 'Segoe UI', sans-serif;
   font-weight: 900;
   font-size: 4rem;
-  color: #fff;
+  color: var(--game-text);
   text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   -webkit-text-stroke: 2px rgba(0,0,0,0.1);
 }
@@ -77,8 +52,8 @@ canvas {
 }
 
 .key {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--game-key-bg);
+  border: 1px solid var(--game-key-border);
   padding: 6px 12px;
   border-radius: 8px;
   font-weight: 700;
@@ -88,9 +63,9 @@ canvas {
   text-align: center;
   backdrop-filter: blur(4px);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  color: var(--game-text);
 }
 
-/* --- Overlay & Glassmorphism --- */
 .game-overlay {
   position: absolute;
   top: 0;
@@ -100,15 +75,15 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.3); /* Slight dim */
+  background: rgba(0, 0, 0, 0.3); 
   backdrop-filter: blur(8px);
   z-index: 20;
   transition: backdrop-filter 0.3s;
 }
 
 .glass-panel {
-  background: var(--panel-bg);
-  border: 1px solid var(--panel-border);
+  background: var(--game-panel-bg);
+  border: 1px solid var(--game-panel-border);
   padding: 3rem 4rem;
   border-radius: 24px;
   display: flex;
@@ -129,17 +104,17 @@ canvas {
 .game-title {
   font-family: 'Segoe UI', sans-serif;
   font-weight: 800;
-  color: var(--primary-color);
+  color: var(--game-primary);
   font-size: 3.5rem;
   margin: 0 0 0.5rem 0;
   text-align: center;
-  text-shadow: 0 0 20px var(--primary-glow);
+  text-shadow: 0 0 20px var(--game-primary-glow);
 }
 
 .final-score {
   font-family: 'Inter', sans-serif;
   font-size: 2rem;
-  color: #fff;
+  color: var(--game-text);
   margin: 0 0 2.5rem 0;
   font-weight: 600;
 }
@@ -165,26 +140,26 @@ canvas {
 }
 
 .btn-primary {
-  background: var(--primary-color);
-  color: #fff;
-  box-shadow: 0 8px 20px var(--primary-glow);
+  background: var(--game-primary);
+  color: var(--game-text);
+  box-shadow: 0 8px 20px var(--game-primary-glow);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px var(--primary-glow);
+  box-shadow: 0 12px 25px var(--game-primary-glow);
   filter: brightness(1.1);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--game-text);
+  border: 2px solid var(--game-key-border);
 }
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: #fff;
+  border-color: var(--game-text);
   transform: translateY(-2px);
 }
 

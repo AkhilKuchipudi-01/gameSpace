@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
 
-// Variables
 $bg-color: #0f172a;
 $glass-bg: rgba(255, 255, 255, 0.05);
 $glass-border: rgba(255, 255, 255, 0.1);
 $text-color: #ffffff;
-
-// Neon Colors
-$rock-color: #f43f5e; // Pink/Red
-$paper-color: #3b82f6; // Blue
-$scissor-color: #eab308; // Yellow
-$win-color: #10b981; // Green
+$rock-color: #f43f5e;
+$paper-color: #3b82f6; 
+$scissor-color: #eab308; 
+$win-color: #10b981; 
 
 :host {
   font-family: 'Poppins', sans-serif;
@@ -29,12 +26,10 @@ $win-color: #10b981; // Green
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  // padding: 2rem;
   height: 100vh;
   box-sizing: border-box;
 }
 
-/* --- Background Blobs --- */
 .blob {
   position: absolute;
   border-radius: 50%;
@@ -46,7 +41,7 @@ $win-color: #10b981; // Green
 .blob-1 {
   width: 400px;
   height: 400px;
-  background: #6366f1; // Indigo
+  background: #6366f1; 
   top: -10%;
   left: -10%;
   animation: float 10s infinite alternate;
@@ -55,7 +50,7 @@ $win-color: #10b981; // Green
 .blob-2 {
   width: 350px;
   height: 350px;
-  background: #ec4899; // Pink
+  background: #ec4899; 
   bottom: -10%;
   right: -10%;
   animation: float 8s infinite alternate-reverse;
@@ -71,7 +66,6 @@ $win-color: #10b981; // Green
   }
 }
 
-/* --- Glass Cards --- */
 .glass-card {
   position: relative;
   z-index: 10;
@@ -94,12 +88,8 @@ $win-color: #10b981; // Green
   font-size: 2.5rem;
   margin: 0 0 2rem 0;
   background: linear-gradient(to right, #f472b6, #60a5fa);
-
-  // Fix: Standard background-clip compatibility
   -webkit-background-clip: text;
   background-clip: text;
-
-  // Ensure text is transparent so gradient shows through
   -webkit-text-fill-color: transparent;
   color: transparent;
 
@@ -107,7 +97,6 @@ $win-color: #10b981; // Green
   letter-spacing: 2px;
 }
 
-/* --- Buttons --- */
 .rockPaperScissorButtonsContainer {
   display: flex;
   gap: 1.5rem;
@@ -140,7 +129,6 @@ $win-color: #10b981; // Green
   }
 }
 
-// Button Specific Glows
 .btn-rock:hover {
   border-color: $rock-color;
   box-shadow: 0 0 20px rgba($rock-color, 0.4);
@@ -156,14 +144,12 @@ $win-color: #10b981; // Green
   box-shadow: 0 0 20px rgba($scissor-color, 0.4);
 }
 
-/* --- Result Area --- */
 .resultDiv {
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.05); // Default neutral
+  background-color: rgba(255, 255, 255, 0.05);
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 1rem;
-  // width: 100%;
   margin-top: 1.5rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   opacity: 0.7;
@@ -182,7 +168,6 @@ $win-color: #10b981; // Green
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Player vs Computer --- */
 .rockPaperScissorResultDiv {
   display: flex;
   justify-content: space-between;
@@ -229,7 +214,6 @@ $win-color: #10b981; // Green
   font-style: italic;
 }
 
-/* --- Scoreboard --- */
 .scoreCard {
   width: 100%;
   max-width: 300px;

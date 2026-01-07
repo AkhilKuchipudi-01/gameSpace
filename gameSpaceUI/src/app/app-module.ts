@@ -8,13 +8,15 @@ import { App } from './app';
 import { RockPaperScissors } from './components/rock-paper-scissors/rock-paper-scissors';
 import { FlyingBird } from './components/flying-bird/flying-bird';
 import { GuessTheNumber } from './components/guess-the-number/guess-the-number';
+import { Home } from './components/home/home';
 
 @NgModule({
   declarations: [
     App,
     RockPaperScissors,
     FlyingBird,
-    GuessTheNumber
+    GuessTheNumber,
+    Home
   ],
   imports: [
     BrowserModule,

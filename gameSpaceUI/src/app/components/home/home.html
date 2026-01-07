@@ -1,0 +1,107 @@
+<div class="page-wrapper">
+  
+  <header class="main-header">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <span class="material-symbols-outlined">sports_esports</span>
+      </div>
+      <h2>GameSpace</h2>
+    </div>
+
+    <div class="desktop-nav">
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Library</a>
+        <a href="#">Community</a>
+        <a href="#">Store</a>
+      </nav>
+      <button class="btn-signin">Sign In</button>
+    </div>
+
+    <button class="menu-btn" (click)="toggleMenu()">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+    <a href="#">Home</a>
+    <a href="#">Library</a>
+    <a href="#">Community</a>
+    <a href="#">Store</a>
+  </div>
+
+  <main>
+    <section class="hero-section">
+      <div class="grid-bg"></div>
+      <div class="hero-content">
+        <div class="hero-title">
+          <h1 class="text-white">GAME</h1>
+          <h1 class="text-purple">SPACE</h1>
+        </div>
+        <p class="hero-subtitle">
+          IMMERSE YOURSELF IN THE NEXT GENERATION OF GAMING
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary">
+            <span class="btn-text">Get Started</span>
+            <div class="btn-overlay"></div>
+          </button>
+          <button class="btn-outline">
+            <span class="material-symbols-outlined">play_circle</span>
+            Watch Demo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="games-section">
+      <div class="container">
+        <div class="games-grid">
+          
+          <div *ngFor="let game of games" class="game-card" [routerLink]="game.link" style="cursor: pointer;">
+            <div class="card-bg-glow"></div>
+            
+            <div class="card-icon">
+              <span class="material-symbols-outlined">{{ game.icon }}</span>
+            </div>
+            
+            <div class="card-content">
+              <h3>{{ game.title }}</h3>
+              <p>{{ game.description }}</p>
+            </div>
+            
+            <div class="card-action">
+              <span>Play Now</span>
+              <span class="material-symbols-outlined arrow">arrow_forward</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="material-symbols-outlined">rocket_launch</span>
+        <span>GameSpace</span>
+      </div>
+      
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Support</a>
+        <a href="#">Careers</a>
+      </div>
+
+      <div class="social-links">
+        <a href="#" class="social-btn"><span class="material-symbols-outlined">alternate_email</span></a>
+        <a href="#" class="social-btn"><span class="material-symbols-outlined">forum</span></a>
+        <a href="#" class="social-btn"><span class="material-symbols-outlined">live_tv</span></a>
+      </div>
+
+      <p class="copyright">© 2026 GameSpace. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

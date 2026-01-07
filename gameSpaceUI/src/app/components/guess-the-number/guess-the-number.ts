@@ -44,7 +44,7 @@ export class GuessTheNumber implements OnInit {
   readonly MAX_ATTEMPTS = 5;
   targetNumber = 0;
   userGuess: number | null = null;
-  
+
   // Game State
   message = '';
   statusClass = 'neutral'; // 'neutral', 'success', 'error', 'warning'
@@ -59,7 +59,7 @@ export class GuessTheNumber implements OnInit {
   checkGuess() {
     // 1. Validation
     if (this.userGuess === null || this.gameState !== 'playing') return;
-    
+
     if (this.userGuess < 1 || this.userGuess > 100) {
       this.setMessage('Please enter a number between 1 and 100', 'warning');
       return;
@@ -75,15 +75,25 @@ export class GuessTheNumber implements OnInit {
     } else {
       this.handleWrongGuess();
     }
-    
+
     // Reset input for next guess
     this.userGuess = null;
     this.triggerShake();
   }
 
   private handleWrongGuess() {
-    const hint = this.userGuess! < this.targetNumber ? 'Too Low!' : 'Too High!';
-    this.setMessage(`${hint} Try again.`, 'error');
+    const difference = Math.abs(this.userGuess! - this.targetNumber);
+    const hint = this.userGuess! < this.targetNumber ? 'Too Low' : 'Too High';
+
+    let proximity = '';
+    if (difference <= 5) {
+      proximity = ' you are very close';
+      this.statusClass = 'warning'; 
+    } else if (difference <= 10) {
+      proximity = ' you are getting close';
+    }
+
+    this.setMessage(`${hint}!${proximity} Try again.`, proximity ? 'warning' : 'error');
   }
 
   private handleWin() {
@@ -102,10 +112,10 @@ export class GuessTheNumber implements OnInit {
     this.gameState = 'playing';
     this.attemptsLeft = this.MAX_ATTEMPTS;
     this.setMessage('Guess a number between 1 and 100', 'neutral');
-    
+
     // Auto focus input after a short delay
     setTimeout(() => {
-      if(this.guessInput) this.guessInput.nativeElement.focus();
+      if (this.guessInput) this.guessInput.nativeElement.focus();
     }, 100);
   }
 
