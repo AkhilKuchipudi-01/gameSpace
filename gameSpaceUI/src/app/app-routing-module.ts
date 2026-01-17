@@ -4,13 +4,15 @@ import { RockPaperScissors } from './components/rock-paper-scissors/rock-paper-s
 import { GuessTheNumber } from './components/guess-the-number/guess-the-number';
 import { FlyingBird } from './components/flying-bird/flying-bird';
 import { Home } from './components/home/home';
+import { WildCard } from './components/wild-card/wild-card';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: Home },
   { path: 'rps', component: RockPaperScissors },
   { path: 'guess', component: GuessTheNumber },
-  { path: 'bird', component: FlyingBird }
+  { path: 'bird', component: FlyingBird },
+  { path: '**', component: WildCard}
 ];
 
 @NgModule({

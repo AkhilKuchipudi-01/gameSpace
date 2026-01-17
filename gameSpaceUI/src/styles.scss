@@ -1,8 +1,6 @@
-/* 1. Imports */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Noto+Sans:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-/* 2. Global Resets */
 body {
   margin: 0;
   padding: 0;
@@ -16,159 +14,112 @@ body {
   box-sizing: border-box;
 }
 
-/* 3. Theme Variables */
+/* 1. DEFAULT (LIGHT) VARIABLES */
 :root {
-  /* Fonts */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Noto Sans', sans-serif;
 
-  /* --- LIGHT THEME (Default) --- */
-
-  /* Brand Colors */
+  /* Colors */
   --primary: #9333ea;
-  /* Purple 600 */
   --primary-dark: #7e22ce;
-  /* Purple 700 */
   --primary-light: #d8b4fe;
-  /* Purple 300 */
   --primary-rgb: 147, 51, 234;
-  /* For RGBA usage */
 
   /* Backgrounds */
   --bg-main: #faf5ff;
-  /* Very light purple tint */
   --bg-dark: #f3e8ff;
-  /* Slightly darker header/footer bg */
   --bg-surface: #ffffff;
-  /* Card background */
   --header-bg: rgba(250, 245, 255, 0.9);
-  /* Glassmorphism header */
 
   /* Text */
   --text-main: #3b0764;
-  /* Deep purple/black for readability */
   --text-muted: #6b21a8;
-  /* Medium purple */
   --text-inverse: #ffffff;
-  /* Text on primary buttons */
 
   /* UI Elements */
   --border-color: #e9d5ff;
-  /* Light purple border */
   --grid-line: #d8b4fe;
-  /* For the hero grid effect */
   --card-shadow: 0 20px 25px -5px rgba(147, 51, 234, 0.15);
   --overlay-gradient: linear-gradient(to bottom, transparent, rgba(250, 245, 255, 0.5), #faf5ff);
+
+  /* Game Specific Defaults */
   --game-primary: #00f2fe;
   --game-primary-glow: rgba(0, 242, 254, 0.4);
   --game-secondary: #4facfe;
   --game-text: #ffffff;
   --game-panel-bg: rgba(255, 255, 255, 0.1);
   --game-panel-border: rgba(255, 255, 255, 0.2);
-  // --game-bg-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --game-bg-gradient: linear-gradient(to bottom, #f1f5f9 0%, #ffffff 100%);
-
-  /* Shared HUD Elements */
   --game-key-bg: rgba(255, 255, 255, 0.1);
   --game-key-border: rgba(255, 255, 255, 0.3);
 
+  /* Guess Game Defaults */
   --guess-bg: #0f172a;
   --guess-primary: #6366f1;
   --guess-accent: #a855f7;
   --guess-text: #ffffff;
-  
-  /* UI Elements */
   --guess-glass: rgba(255, 255, 255, 0.05);
   --guess-glass-border: rgba(255, 255, 255, 0.1);
   --guess-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  
-  /* Feedback Colors */
   --guess-success: #10b981;
   --guess-error: #f43f5e;
   --guess-warning: #f59e0b;
-
-  /* Inputs & UI Details */
   --guess-input-bg: rgba(0, 0, 0, 0.2);
   --guess-input-border: rgba(255, 255, 255, 0.1);
   --guess-dot-bg: rgba(255, 255, 255, 0.1);
-  
-  /* Gradients */
   --guess-gradient-text: linear-gradient(to right, #c084fc, #6366f1);
   --guess-liquid-primary: linear-gradient(45deg, #6366f1, #a855f7);
   --guess-liquid-win: linear-gradient(45deg, #10b981, #34d399);
   --guess-liquid-lose: linear-gradient(45deg, #f43f5e, #ef4444);
 }
 
-/* --- DARK THEME --- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Brand Colors (Kept vibrant) */
-    --primary: #a855f7;
-    /* Purple 500 (Slightly lighter for dark mode) */
-    --primary-dark: #9333ea;
-    --primary-light: #e9d5ff;
-    --primary-rgb: 168, 85, 247;
+/* 2. DARK THEME OVERRIDES */
+[data-theme="dark"] {
+  --primary: #a855f7;
+  --primary-dark: #9333ea;
+  --primary-light: #e9d5ff;
+  --primary-rgb: 168, 85, 247;
 
-    /* Backgrounds (Original Space Theme) */
-    --bg-main: #0f0720;
-    /* Deep Space */
-    --bg-dark: #0a0515;
-    /* Darker Footer */
-    --bg-surface: #1e1b4b;
-    /* Deep Indigo Surface */
-    --header-bg: rgba(15, 7, 32, 0.9);
+  --bg-main: #0f0720;
+  --bg-dark: #0a0515;
+  --bg-surface: #1e1b4b;
+  --header-bg: rgba(15, 7, 32, 0.9);
 
-    /* Text */
-    --text-main: #faf5ff;
-    --text-muted: #c084fc;
-    --text-inverse: #ffffff;
+  --text-main: #faf5ff;
+  --text-muted: #c084fc;
+  --text-inverse: #ffffff;
 
-    /* UI Elements */
-    --border-color: #4c1d95;
-    /* Purple 900 */
-    --grid-line: #2e1065;
-    /* Dark purple grid */
-    --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    --overlay-gradient: linear-gradient(to bottom, transparent, rgba(15, 7, 32, 0.5), #0f0720);
+  --border-color: #4c1d95;
+  --grid-line: #2e1065;
+  --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --overlay-gradient: linear-gradient(to bottom, transparent, rgba(15, 7, 32, 0.5), #0f0720);
 
-    --game-primary: #e056fd;
-    --game-primary-glow: rgba(224, 86, 253, 0.4);
-    --game-secondary: #686de0;
-    --game-panel-bg: rgba(15, 23, 42, 0.6);
-    --game-bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  --game-primary: #e056fd;
+  --game-primary-glow: rgba(224, 86, 253, 0.4);
+  --game-secondary: #686de0;
+  --game-panel-bg: rgba(15, 23, 42, 0.6);
+  --game-bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
 
-    --guess-bg: #0f172a;
-    /* Original BG */
-    --guess-text: #ffffff;
-    /* Original Text */
-
-    /* UI Elements */
-    --guess-glass: rgba(255, 255, 255, 0.05);
-    /* Original Glass */
-    --guess-glass-border: rgba(255, 255, 255, 0.1);
-    --guess-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-    /* Inputs & Dots */
-    --guess-input-bg: rgba(0, 0, 0, 0.2);
-    --guess-input-border: rgba(255, 255, 255, 0.1);
-    --guess-dot-inactive: rgba(255, 255, 255, 0.1);
-
-    /* Gradients */
-    --guess-gradient-text: linear-gradient(to right, #c084fc, #6366f1);
-  }
+  --guess-bg: #0f172a;
+  --guess-text: #ffffff;
+  --guess-glass: rgba(255, 255, 255, 0.05);
+  --guess-glass-border: rgba(255, 255, 255, 0.1);
+  --guess-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --guess-input-bg: rgba(0, 0, 0, 0.2);
+  --guess-input-border: rgba(255, 255, 255, 0.1);
+  --guess-dot-inactive: rgba(255, 255, 255, 0.1);
+  --guess-gradient-text: linear-gradient(to right, #c084fc, #6366f1);
 }
 
-// /* 1. Imports (Required for GameSpace Design) */
 // @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Noto+Sans:wght@400;500;700&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
-// /* 2. Global Resets & Body */
 // body {
 //   margin: 0;
 //   padding: 0;
-//   font-family: 'Noto Sans', sans-serif; /* Applied Noto Sans globally */
-//   // background-color: var(--main-bg);
-//   color: var(--text-color);
+//   font-family: var(--font-body);
+//   background-color: var(--bg-main);
+//   color: var(--text-main);
 //   transition: background-color 0.3s ease, color 0.3s ease;
 // }
 
@@ -176,87 +127,82 @@ body {
 //   box-sizing: border-box;
 // }
 
-// /* 3. Global Variables (Your Update) */
 // :root {
-//   // display: block;
-//   --primary-color: #2c7be5;
-//   --accent-color: #22c55e;
-//   --danger-color: #ef4444;
-//   --border-radius: 1rem;
-
-//   // --bg-color: #eeeeee;
-//   --main-bg: #eeeeee;
-//   --bg-color: #f9fafb;
-//   --card-bg: #ffffff;
-//   --text-color: #111827;
-//   --result-bg: #ffffff;
-
-//   --box-shadow: rgba(0, 0, 0, 0.4);
-//   --white: #fff;
-//   --black: #000;
-//   --rps-box-shadow1: rgba(0, 0, 0, 0.16);
-//   --rps-box-shadow2: rgba(0, 0, 0, 0.23);
-
-//   /* Font Variables for use in components */
 //   --font-display: 'Space Grotesk', sans-serif;
 //   --font-body: 'Noto Sans', sans-serif;
+//   --primary: #9333ea;
+//   --primary-dark: #7e22ce;
+//   --primary-light: #d8b4fe;
+//   --primary-rgb: 147, 51, 234;
+//   --bg-main: #faf5ff;
+//   --bg-dark: #f3e8ff;
+//   --bg-surface: #ffffff;
+//   --header-bg: rgba(250, 245, 255, 0.9);
+//   --text-main: #3b0764;
+//   --text-muted: #6b21a8;
+//   --text-inverse: #ffffff;
+//   --border-color: #e9d5ff;
+//   --grid-line: #d8b4fe;
+//   --card-shadow: 0 20px 25px -5px rgba(147, 51, 234, 0.15);
+//   --overlay-gradient: linear-gradient(to bottom, transparent, rgba(250, 245, 255, 0.5), #faf5ff);
+//   --game-primary: #00f2fe;
+//   --game-primary-glow: rgba(0, 242, 254, 0.4);
+//   --game-secondary: #4facfe;
+//   --game-text: #ffffff;
+//   --game-panel-bg: rgba(255, 255, 255, 0.1);
+//   --game-panel-border: rgba(255, 255, 255, 0.2);
+//   --game-bg-gradient: linear-gradient(to bottom, #f1f5f9 0%, #ffffff 100%);
+//   --game-key-bg: rgba(255, 255, 255, 0.1);
+//   --game-key-border: rgba(255, 255, 255, 0.3);
+//   --guess-bg: #0f172a;
+//   --guess-primary: #6366f1;
+//   --guess-accent: #a855f7;
+//   --guess-text: #ffffff;
+//   --guess-glass: rgba(255, 255, 255, 0.05);
+//   --guess-glass-border: rgba(255, 255, 255, 0.1);
+//   --guess-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+//   --guess-success: #10b981;
+//   --guess-error: #f43f5e;
+//   --guess-warning: #f59e0b;
+//   --guess-input-bg: rgba(0, 0, 0, 0.2);
+//   --guess-input-border: rgba(255, 255, 255, 0.1);
+//   --guess-dot-bg: rgba(255, 255, 255, 0.1);
+//   --guess-gradient-text: linear-gradient(to right, #c084fc, #6366f1);
+//   --guess-liquid-primary: linear-gradient(45deg, #6366f1, #a855f7);
+//   --guess-liquid-win: linear-gradient(45deg, #10b981, #34d399);
+//   --guess-liquid-lose: linear-gradient(45deg, #f43f5e, #ef4444);
 // }
 
-// /* 4. Dark Mode Support */
 // @media (prefers-color-scheme: dark) {
 //   :root {
-//     --bg-color: #18181b;
-//     --card-bg: #222;
-//     --text-color: #f9fafb;
-//     // --result-bg: #4242429d;
-//     --result-bg: #adadad25;
-
-//     --box-shadow: rgba(255, 255, 255, 0.4);
-//     --white: #000;
-//     --black: #fff;
-
-//     --main-bg: var(--bg-color); // Maps main-bg to the dark bg-color
-
-//     --rps-box-shadow1: rgba(255, 255, 255, 0.16);
-//     --rps-box-shadow2: rgba(255, 255, 255, 0.23);
+//     --primary: #a855f7;
+//     --primary-dark: #9333ea;
+//     --primary-light: #e9d5ff;
+//     --primary-rgb: 168, 85, 247;
+//     --bg-main: #0f0720;
+//     --bg-dark: #0a0515;
+//     --bg-surface: #1e1b4b;
+//     --header-bg: rgba(15, 7, 32, 0.9);
+//     --text-main: #faf5ff;
+//     --text-muted: #c084fc;
+//     --text-inverse: #ffffff;
+//     --border-color: #4c1d95;
+//     --grid-line: #2e1065;
+//     --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+//     --overlay-gradient: linear-gradient(to bottom, transparent, rgba(15, 7, 32, 0.5), #0f0720);
+//     --game-primary: #e056fd;
+//     --game-primary-glow: rgba(224, 86, 253, 0.4);
+//     --game-secondary: #686de0;
+//     --game-panel-bg: rgba(15, 23, 42, 0.6);
+//     --game-bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+//     --guess-bg: #0f172a;
+//     --guess-text: #ffffff;
+//     --guess-glass: rgba(255, 255, 255, 0.05);
+//     --guess-glass-border: rgba(255, 255, 255, 0.1);
+//     --guess-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+//     --guess-input-bg: rgba(0, 0, 0, 0.2);
+//     --guess-input-border: rgba(255, 255, 255, 0.1);
+//     --guess-dot-inactive: rgba(255, 255, 255, 0.1);
+//     --guess-gradient-text: linear-gradient(to right, #c084fc, #6366f1);
 //   }
 // }
-
-// // body {
-// //   margin: 0;
-// // }
-
-// // :root {
-// //   // display: block;
-// //   --primary-color: #2c7be5;
-// //   --accent-color: #22c55e;
-// //   --danger-color: #ef4444;
-// //   --border-radius: 1rem;
-// //   // --bg-color: #eeeeee;
-// //   --main-bg: #eeeeee;
-// //   --bg-color: #f9fafb;
-// //   --card-bg: #ffffff;
-// //   --text-color: #111827;
-// //   --result-bg: #ffffff;
-// //   --box-shadow: rgba(0, 0, 0, 0.4);
-// //   --white: #fff;
-// //   --black: #000;
-// //   --rps-box-shadow1: rgba(0, 0, 0, 0.16);
-// //   --rps-box-shadow2: rgba(0, 0, 0, 0.23);
-// // }
-
-// // @media (prefers-color-scheme: dark) {
-// //   :root {
-// //     --bg-color: #18181b;
-// //     --card-bg: #222;
-// //     --text-color: #f9fafb;
-// //     // --result-bg: #4242429d;
-// //     --result-bg: #adadad25;
-// //     --box-shadow: rgba(255, 255, 255, 0.4);
-// //     --white: #000;
-// //     --black: #fff;
-// //     --main-bg: var(--bg-color);
-// //     --rps-box-shadow1: rgba(255, 255, 255, 0.16);
-// //     --rps-box-shadow2: rgba(255, 255, 255, 0.23);
-// //   }
-// // }

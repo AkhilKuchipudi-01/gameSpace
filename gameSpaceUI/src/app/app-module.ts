@@ -9,6 +9,7 @@ import { RockPaperScissors } from './components/rock-paper-scissors/rock-paper-s
 import { FlyingBird } from './components/flying-bird/flying-bird';
 import { GuessTheNumber } from './components/guess-the-number/guess-the-number';
 import { Home } from './components/home/home';
+import { WildCard } from './components/wild-card/wild-card';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { Home } from './components/home/home';
     RockPaperScissors,
     FlyingBird,
     GuessTheNumber,
-    Home
+    Home,
+    WildCard,
   ],
   imports: [
     BrowserModule,
