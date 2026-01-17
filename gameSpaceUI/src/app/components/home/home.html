@@ -1,5 +1,5 @@
 <div class="page-wrapper">
-  
+
   <header class="main-header">
     <div class="logo-container">
       <div class="logo-icon">
@@ -10,24 +10,34 @@
 
     <div class="desktop-nav">
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Library</a>
-        <a href="#">Community</a>
-        <a href="#">Store</a>
+        <a href="/home">Home</a>
+        <a href="/library">Library</a>
+        <a href="/community">Community</a>
+        <a href="/store">Store</a>
       </nav>
       <button class="btn-signin">Sign In</button>
     </div>
 
-    <button class="menu-btn" (click)="toggleMenu()">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
+    <div class="header-actions">
+      <button class="theme-btn" (click)="toggleTheme()" [title]="'Current theme: ' + (theme | titlecase)">
+        <span class="material-symbols-outlined">
+          @if (theme === 'light') { light_mode }
+          @else if (theme === 'dark') { dark_mode }
+          @else { brightness_auto }
+        </span>
+      </button>
+
+      <button class="menu-btn" (click)="toggleMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
   </header>
 
   <div class="mobile-menu" [class.open]="isMobileMenuOpen">
-    <a href="#">Home</a>
-    <a href="#">Library</a>
-    <a href="#">Community</a>
-    <a href="#">Store</a>
+    <a href="/home">Home</a>
+    <a href="/library">Library</a>
+    <a href="/community">Community</a>
+    <a href="/store">Store</a>
   </div>
 
   <main>
@@ -57,19 +67,19 @@
     <section class="games-section">
       <div class="container">
         <div class="games-grid">
-          
+
           <div *ngFor="let game of games" class="game-card" [routerLink]="game.link" style="cursor: pointer;">
             <div class="card-bg-glow"></div>
-            
+
             <div class="card-icon">
               <span class="material-symbols-outlined">{{ game.icon }}</span>
             </div>
-            
+
             <div class="card-content">
               <h3>{{ game.title }}</h3>
               <p>{{ game.description }}</p>
             </div>
-            
+
             <div class="card-action">
               <span>Play Now</span>
               <span class="material-symbols-outlined arrow">arrow_forward</span>
@@ -87,12 +97,12 @@
         <span class="material-symbols-outlined">rocket_launch</span>
         <span>GameSpace</span>
       </div>
-      
+
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Support</a>
-        <a href="#">Careers</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/support">Support</a>
+        <a href="careers">Careers</a>
       </div>
 
       <div class="social-links">
