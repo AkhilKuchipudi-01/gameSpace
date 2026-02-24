@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "gamespace-7761c"
+  },
+  "targets": {
+    "gamespace-7761c": {
+      "hosting": {
+        "gamespace2026": [
+          "gamespace2026"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
